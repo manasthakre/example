@@ -1,0 +1,38 @@
+<!doctype HTML>
+<html>
+
+    <head>
+        <title>"We will see how to make Bar chart"</title>           <!This text appears on the tab of browser>
+        <script src="https://d3js.org/d3.v3.min.js"></script>                <!This is to call d3 library>
+    </head>
+
+
+    <body>
+        <script>
+        
+            var datArray=[20,35,75];
+            
+            
+            var canvas= d3.select("body")                      /*Here we are adding drawing space or canvas in Body for graphics*/
+                        .append("svg")
+                        .attr("width", 700)
+                        .attr("height", 700);
+            
+            var bars= canvas.selectAll("rect")                        /*Here we are selecting all rectangles. No we dont have any rectangles yet but still we call this hypothetical "rect" to assign datavalues from array*/ 
+                        .data(datArray)                               /*Here we append data from dataArray to those rectangles*/
+                        .enter()                                      /* enter() gives placeholders to each rectangle to each data value in array. ex: 20 to 1st rectangle, 35 to second and so on"*/
+                            .append("rect")                           /*here we are adding actual rectangles to the canvas*/
+                            .attr("width",function(d) {return d;})    /*asigning width tothe rectangle based on the data we have in array, calling function named d to return d for each element of data array*/  
+                            .attr("height", 25)                       /*here we give height to the rectangle or else it will nopt be visible as a bar*/
+                            .attr("y", function(d,i){return i*125;})  /* we are doing this to remove overlapp. here we again call a function d and return i*25 where i is the index value like 1 for the data array, so will create 125 pixel gap in the bars*/      
+                            .attr("fill","pink");
+            
+        </script>
+
+
+
+
+    </body>
+
+
+</html>

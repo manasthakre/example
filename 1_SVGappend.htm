@@ -1,0 +1,53 @@
+<!doctype HTML>
+<html>
+
+    <head>
+        <title>"We will see how to append SVG to a canvas"</title>           <!This text appears on the tab of browser>
+        <script src="https://d3js.org/d3.v3.min.js"></script>                <!This is to call d3 library>
+    </head>
+
+
+    <body>
+        <script>
+        
+            var canvas= d3.select("body")                      /*Here we are adding drawing space or canvas in Body for graphics*/
+                        .append("svg")
+                        .attr("width", 700)
+                        .attr("height", 700);
+            
+            var circle= canvas.append("circle")               /*To the above canvas variable we are now appending circle*/        
+                        .attr("r",50)
+                        .attr("fill", "pink")                 /*We use "fill" in scripts to give color*/
+                        .attr("cx",300)
+                        .attr("cy",300);
+            
+            var rect= canvas.append("rect")
+                           .attr("width",50)                  /*for rectangle u need "height" & "width". it will build rectabgle at 0,0*/  
+                           .attr("height",70)
+                           .attr("fill", "red");
+            
+            var rect= canvas.append("rect")
+                           .attr("width",20)  
+                           .attr("height",300)
+                           .attr("x", 100)                      /*here i am fixing the coordinates of first point*/
+                           .attr("y", 100)
+                           .attr("fill", "grey")
+                           .attr("opacity",0.5);                /*here i fix "opacity"*/   
+            
+            var line= canvas.append("line")
+                            .attr("x1",100)                     /*for line you have to supply x1,y1,x2,y2 coordinates*/
+                            .attr("y1",5)
+                            .attr("x2",400)
+                            .attr("y2",350)
+                            .attr("stroke", "blue")             /*stroke is needed for line color*/
+                           .attr("stroke-width", 7)             /*stroke-width is necessary for thickness*/    
+                            .attr("stroke-opacity", 0.4)
+        </script>
+
+
+
+
+    </body>
+
+
+</html>

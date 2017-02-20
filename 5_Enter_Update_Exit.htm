@@ -1,0 +1,48 @@
+<!doctype HTML>
+<html>
+
+    <head>
+        <title>"We will see how to make Bar chart"</title>           <!This text appears on the tab of browser>
+        <script src="https://d3js.org/d3.v3.min.js"></script>                <!This is to call d3 library>
+    </head>
+
+
+    <body>
+        <script>
+        
+        var data = [50]    
+            
+        var canvas = d3.select("body")
+                    .append("svg")
+                    .attr("width", 1000)
+                    .attr("height",1000);
+        
+            
+        var circle1= canvas.append("circle")
+                            .attr("cx",100)
+                            .attr("cy",100)
+                            .attr("r", 30);
+            
+        var circle2= canvas.append("circle")
+                            .attr("cx", 200)
+                            .attr("cy", 200)
+                            .attr("r", 40);
+            
+        var circles = canvas.selectAll("circle")
+                    .data(data)
+                    .attr("fill","pink")
+                    .exit()
+                        .attr("fill","orange");
+            
+            /*the story of enter(), exit() function. If we have fewer data than the DOM elements, then the select all function will bind the data first to the existing DOM element using teh update
+            In the code above what happened is pink color went to teh circle that inherited the data , and the other cicrlce got orange with no data assigned to it*/
+            
+        </script>
+
+
+
+
+    </body>
+
+
+</html>

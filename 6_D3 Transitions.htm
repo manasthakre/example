@@ -1,0 +1,50 @@
+<!doctype HTML>
+<html>
+
+    <head>
+        <title>"We will see how to make Transitions"</title>           <!This text appears on the tab of browser>
+        <h1>Observe the movement, delays and transitions</h1>
+        <script src="https://d3js.org/d3.v3.min.js"></script>                <!This is to call d3 library>
+    </head>
+
+
+    <body>
+        <script>
+        
+       
+            
+        var canvas = d3.select("body")
+                    .append("svg")
+                    .attr("width", 2000)
+                    .attr("height",2000);
+        
+            
+        var circle= canvas.append("circle")
+                    .attr("cx",100)
+                    .attr("cy",100)
+                    .attr("r", 60)
+                    .attr("fill", "yellowgreen");
+        
+            circle.transition()
+                    .duration(10000)
+                    .delay(1000)
+                    .attr("cx",1900)
+                    .attr("cy",1000)
+                    .attr("r",15)
+                    .attr("fill","pink")        
+                    .transition()
+                    .attr("cy",100)
+                    .attr("r",60)
+                    .attr("fill", "red")
+                    .attr("cx",100)
+                    .each("end", function(){d3.select(this).attr("opacity",0.5);});    /*This each() function does something afet the transition whateer you specify. Here I tried to change the opacity */
+                        
+        </script>
+
+
+
+
+    </body>
+
+
+</html>

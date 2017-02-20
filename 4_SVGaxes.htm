@@ -1,0 +1,59 @@
+<!doctype HTML>
+<html>
+
+    <head>
+        <title>"We will see how to make Bar chart"</title>           <!This text appears on the tab of browser>
+        <script src="https://d3js.org/d3.v3.min.js"></script>                <!This is to call d3 library>
+    </head>
+
+
+    <body>
+        <script>
+        
+            var datArray = [20,35,75,125,180, 200,500,350, 650, 750, 1000];
+            var width = 1500;
+            var height = 1000;
+            
+            
+          var widthscale= d3.scale.linear()                                                 /*this scale is necessary to scle the data based on the values. if the data overflows out of the size of canvas, this d3.scale.linear() will try to fit it in container*/
+                            .domain([0,1000])                                                /*domain is nothing but the min and max of the values in our dataarray*/
+                            .range([0,width]);                                              /*range is the min and max of our canvas*/
+          
+          var axis= d3.svg.axis()                                                           /*d3 has an axis element  d3.svg.axis()*/
+                    .scale(widthscale);                                                     /*Here we scale the axis min and max asper our widthscale()*/
+            
+            
+          var color= d3.scale.linear()                                                      /*here i have used d3.scale.linear function to use it to color from a range of pink to orange shades of bars... Amazing right :) */
+                    .domain([0,1000])
+                    .range(["pink", "orange"]);
+            
+          var canvas= d3.select("body")                                                     /*Here we are adding drawing space or canvas in Body for graphics*/
+                        .append("svg")
+                        .attr("width", width)
+                        .attr("height", height)
+                        .append("g")                                                        /*here we append group element or "g" to the whole canvas. This is to make changes like move , translate , transform, etc.. to the whole canvas*/
+                        .attr("transform", "translate(50,100)");
+                      /*  .call(axis);     */                                                   /* calling axis is necessary after defining axis . this makes sure it shows up on canvas. By default it will show up on top. Refer to code line 48-50 on ho wto pull it down*/    
+            
+            var bars= canvas.selectAll("rect")                                               /*Here we are selecting all rectangles. No we dont have any rectangles yet but still we call this hypothetical "rect" to assign datavalues from array*/ 
+                        .data(datArray)                                                        /*Here we append data from dataArray to those rectangles*/
+                        .enter()                                                              /* enter() gives placeholders to each rectangle to each data value in array. ex: 20 to 1st rectangle, 35 to second and so on"*/
+                            .append("rect")                                                    /*here we are adding actual rectangles to the canvas*/
+                            .attr("width",function(d) {return widthscale(d);})                    /*asigning width tothe rectangle based on the data we have in array, calling function named d to return the newly formed widthscale*/  
+                            .attr("height", 50)                                                  /*here we give height to the rectangle or else it will nopt be visible as a bar*/
+                            .attr("y", function(d,i){return i*70;})                            /* we are doing this to remove overlapp. here we again call a function d and return i*25 where i is the index value like 1 for the data array, so will create 125 pixel gap in the bars*/      
+                            .attr("fill",function(d) {return color(d);});                       /*asigning fill or colours tothe rectangle based on the data we have in array, calling function named d to return the newly formed color */
+            
+            
+            canvas.append("g")                                                              /*This appends axis to "g" and then we can use transform, translate to move it to the bottom by changing y coordinate*/
+                   .attr("transform","translate(0,790)")    
+                    .call(axis);                                                            /*Do not forget to call the axis. Its necessary*/    
+        </script>
+
+
+
+
+    </body>
+
+
+</html>

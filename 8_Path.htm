@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html>
+
+<head>
+<title>D3 lerning</title>
+<h1>Story of Paths</h1>
+<script src="http://d3js.org/d3.v3.min.js"></script>    
+</head>
+    
+<body>
+
+<script>
+
+
+    var canvas=d3.select("body").append("svg").attr("width",1000).attr("height",1000);
+    
+    var data= [
+        {x : 10, y : 20},
+        {x : 100, y : 70},
+        {x : 250, y : 400},
+    ];
+    
+    var group= canvas.append("g")
+        .attr("transform", "translate(200,200)")
+    
+    var line= d3.svg.line()
+        .x(function (d) {return d.x;})
+        .y(function (d) {return d.y;});
+    
+    group.selectAll("path")
+        .data([data])
+        .enter()
+        .append("path")
+        .attr("d", line)
+       /* .attr("fill","gold") */
+        .attr("stroke","pink")
+        .attr("stroke-width",5);
+    
+</script>    
+    
+</body>    
+</html>
